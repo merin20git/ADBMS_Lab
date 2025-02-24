@@ -1,0 +1,17 @@
+alter table Employee72 rename column Job to Designation;
+alter table Employee72 drop column Mgr; 
+insert into Employee72 values(101,'Merin',90000,'HR','Marketing'),
+insert into Employee72 values(102,'Sree',40000,'Assistant Manager','Sales'),
+insert into Employee72 values(103,'Sia',35000,'Clerk','Finance');
+insert into Employee72 values(104,'John',120000,'CEO','Marketing');
+insert into Employee72 values(105,'Neil',80000,'HR','Finance');
+insert into Employee72 values(106,'Sona',30000,'Clerk','Sales');
+insert into Employee72 values(108,'Magie',50000,'Assistant','Purchase');
+insert into Employee72 values(109,'Sona',30000,'Clerk','Purchase');
+select * from Employee72 where Section='Purchase';
+select * from Employee72 where Empno='102';
+SELECT DISTINCT Section FROM Employee72;
+select Ename,Designation from Employee72 where Sal>50000;
+create table dept72(dept_id int primary key,dept_name varchar(20) not null,dept_location varchar(20));
+create table emp72(emp_id int primary key,emp_name varchar(20),emp_sal number(10) check(emp_sal > 20000),emp_join_date date check (emp_join_date between date '1998-06-01' and current_date),dept_id int,foreign key(dept_id) references dept72(dept_id));
+
