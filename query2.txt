@@ -1,0 +1,35 @@
+create table dept72(dept_id int primary key,dept_name varchar(20) not null,dept_location varchar(20));
+
+create table emp72(emp_id numeric primary key,emp_name varchar(25),emp_sal numeric(8,2) check(emp_sal > 20000),emp_join_date DATE check (emp_join_date >= DATE '1998-06-01'),dept_id numeric,foreign key(dept_id) references dept72(dept_id));
+
+create table support72(s_id numeric primary key,emp_id numeric,dept_id numeric,status varchar(8) check(status IN ('Yes','No')),foreign key(emp_id)references emp72(emp_id),foreign key(dept_id) references dept72(dept_id));
+
+desc dept72;
+desc emp72;
+desc support72;
+
+alter table emp72 add emp_mail varchar(100);
+
+drop table support72;
+
+alter table emp72 modify emp_sal decimal(12,2);
+
+insert into dept72 values(101,'HR','Tvm');
+insert into dept72 values(102,'Sales','Rosewood');
+insert into dept72 values(103,'Marketing','Nagarcoil');
+insert into dept72 values(104,'Finance','Indevaram');
+insert into dept72 values(105,'IT','Ekm');
+
+insert into emp72 values(1,'John Doe',60000,To_date('15-05-2021','DD-MM-YYYY'),101,'john@gmail.com');
+
+insert into emp72 values(2,'Merin',80000,To_date('20-05-2019','DD-MM-YYYY'),102,'merin@gmail.com');
+insert into emp72 values(3,'Sona',40000,To_date('04-11-2024','DD-MM-YYYY'),103,'sona@gmail.com');
+insert into emp72 values(4,'Sia',55000,To_date('13-10-2022','DD-MM-YYYY'),104,'sia@gmail.com');
+insert into emp72 values(5,'Derick',100000,To_date('19-01-2015','DD-MM-YYYY'),105,'derick@gmail.com');
+
+update emp72 set emp_sal=emp_sal*1.10 where emp_id=1;
+
+delete from emp72 where emp_id=1;
+
+insert into emp72 values(6,'Megha',35000,To_date('17-09-2014','DD-MM-YYYY'),101,'megha@gmail.com');
+update emp72 set emp_sal = emp_sal * 1.10 where dept_id=101 and emp_sal<50000;
